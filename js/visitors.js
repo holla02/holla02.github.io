@@ -63,19 +63,6 @@ function checkAndRecordVisitor() {
   });
 }
 
-function updateOnlineVisitors(snapshot) {
-  if (!snapshot.exists()) {
-    return 0;
-  }
-
-  const fiveMinutesAgo = Date.now() - 5 * 60 * 1000;
-  const allVisitors = snapshot.val();
-  const onlineCount = Object.values(allVisitors).filter(data => data.timestamp >= fiveMinutesAgo).length;
-  document.getElementById('online-visitor-count').textContent = onlineCount;
-
-  return onlineCount;
-}
-
 let visitorsInterval;
 const visitorsRef = ref(db, `visitors`);
 onValue(visitorsRef, (snapshot) => {
@@ -91,19 +78,6 @@ onValue(visitorsRef, (snapshot) => {
   // clear tasks
   if (visitorsInterval != undefined) {
     clearInterval(visitorsInterval);
-  }
-
-  // visitor count > 0 ?
-  if (updateOnlineVisitors(snapshot) > 1) {
-    // set a interval
-    visitorsInterval = setInterval(() => {
-      get(visitorsRef).then((snapshot) => {
-        // clear interval if 0 visitors
-        if (updateOnlineVisitors(snapshot) <= 1) {
-          clearInterval(visitorsInterval);
-        }
-      });
-    }, 60 * 1000);
   }
 });
 
