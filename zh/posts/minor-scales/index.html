@@ -4,11 +4,11 @@
 </span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>key <span style=color:#f92672>=</span> key
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#75715e># 和聲小音階邏輯</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>harmonic_logic</span>(self, chord, phrase):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>harmonic_logic</span>(self, chord):
 </span></span><span style=display:flex><span>        <span style=color:#75715e># 檢查是否為屬功能和弦 (V 或 vii°)</span>
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> chord<span style=color:#f92672>.</span>function <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;V&#34;</span> <span style=color:#f92672>or</span> chord<span style=color:#f92672>.</span>is_dominant():
 </span></span><span style=display:flex><span>            <span style=color:#75715e># 升高第 7 音以形成導音</span>
-</span></span><span style=display:flex><span>            phrase<span style=color:#f92672>.</span>note(<span style=color:#ae81ff>7</span>)<span style=color:#f92672>.</span>apply(<span style=color:#e6db74>&#39;♯&#39;</span>)
+</span></span><span style=display:flex><span>            chord<span style=color:#f92672>.</span>note(<span style=color:#ae81ff>7</span>)<span style=color:#f92672>.</span>apply(<span style=color:#e6db74>&#39;♯&#39;</span>)
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> phrase
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#75715e># 旋律小音階邏輯</span>
